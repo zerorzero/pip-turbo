@@ -35,9 +35,7 @@ from install_requirements import install_requirements
 
 # Basic usage
 install_requirements('requirements.txt')
-```
 
-```python
 # Advanced usage with custom parameters
 install_requirements(
 file_path='requirements.txt',
