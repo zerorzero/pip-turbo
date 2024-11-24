@@ -14,7 +14,7 @@ A fast, concurrent Python package installer that supercharges your pip installat
 
 Clone the repository:
 ```bash
-git clone https://github.com/yourusername/pip-turbo.git
+git clone https://github.com/zerorzero/pip-turbo.git
 cd pip-turbo
 ```
 
