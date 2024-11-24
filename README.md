@@ -57,8 +57,7 @@ failed_output='requirements_failed.txt'
 
 ## 📝 Output Example
 
-Starting installation of 10 packages... 
-
+Starting installation of 10 packages...   
 ✅ Successfully installed: requests  
 ✅ Successfully installed: pandas  
 ❌ Failed to install: non-existent-package  
