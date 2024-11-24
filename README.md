@@ -57,16 +57,17 @@ failed_output='requirements_failed.txt'
 
 ## 📝 Output Example
 
-Starting installation of 10 packages...
-✅ Successfully installed: requests
-✅ Successfully installed: pandas
-❌ Failed to install: non-existent-package
-Error: Command '[pip, install, non-existent-package]' returned non-zero exit status 1
-✅ Successfully installed: numpy
-Installation Summary:
-✅ Successfully installed: 3
-❌ Failed to install: 1
-❌ Failed packages have been written to requirements_failed.txt.
+Starting installation of 10 packages... 
+
+✅ Successfully installed: requests  
+✅ Successfully installed: pandas  
+❌ Failed to install: non-existent-package  
+Error: Command '[pip, install, non-existent-package]' returned non-zero exit status 1  
+✅ Successfully installed: numpy  
+Installation Summary:  
+✅ Successfully installed: 3  
+❌ Failed to install: 1  
+❌ Failed packages have been written to requirements_failed.txt.  
 
 
 ## 🤝 Contributing
