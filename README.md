@@ -2,6 +2,8 @@
 
 A fast, concurrent Python package installer that supercharges your pip installations using multi-threading.
 
+Tired of waiting for pip to install packages one by one? pip-turbo installs your requirements.txt up to 4x faster with concurrent processing. No more interrupted workflows - just fire and forget! 🔥
+
 ## ✨ Features
 
 - **Concurrent Installation**: Installs multiple packages simultaneously using thread pooling
