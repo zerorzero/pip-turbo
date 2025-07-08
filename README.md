@@ -79,5 +79,5 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## ⚠️ Note
 
-This tool requires Python 3.6+ and runs on Windows systems (uses Windows-specific pip path). For other operating systems, minor modifications may be needed.
+This tool requires Python 3.6+ and works on Windows, Linux, and macOS systems with cross-platform pip executable detection.
 

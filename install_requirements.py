@@ -3,6 +3,23 @@ import concurrent.futures
 import threading
 import os
 import sys
+import re
+
+
+def validate_package_name(package):
+    """
+    Validates that a package name is safe to pass to pip.
+    
+    Args:
+        package (str): The package specification to validate.
+    
+    Returns:
+        bool: True if the package name is valid, False otherwise.
+    """
+    # Allow only alphanumeric characters, hyphens, underscores, dots, version specifiers, and brackets
+    # This pattern covers most legitimate pip package specifications
+    pattern = r'^[a-zA-Z0-9][a-zA-Z0-9._-]*(\[[a-zA-Z0-9,_-]*\])?([<>=!~]*[0-9a-zA-Z.*-]*)*$'
+    return bool(re.match(pattern, package.strip()))
 
 
 def install_package(package):
@@ -15,9 +32,20 @@ def install_package(package):
     Returns:
         tuple: (package, success, error_message)
     """
+    # Validate package name to prevent command injection
+    if not validate_package_name(package):
+        return (package, False, f"Invalid package name: {package}")
+    
     try:
-        # Use the full path to the pip executable
-        pip_executable = os.path.join(os.path.dirname(sys.executable), 'Scripts', 'pip.exe')
+        # Use cross-platform pip executable discovery
+        if os.name == 'nt':  # Windows
+            pip_executable = os.path.join(os.path.dirname(sys.executable), 'Scripts', 'pip.exe')
+        else:  # Unix-like systems (Linux, macOS)
+            pip_executable = os.path.join(os.path.dirname(sys.executable), 'pip')
+            # Fallback to system pip if local pip doesn't exist
+            if not os.path.isfile(pip_executable):
+                pip_executable = 'pip'
+        
         subprocess.check_call([pip_executable, 'install', package])
         return (package, True, "")
     except subprocess.CalledProcessError as e:
@@ -37,6 +65,11 @@ def install_requirements(file_path, encoding='utf-8', max_workers=4, failed_outp
         max_workers (int): Maximum number of concurrent threads.
         failed_output (str): Path to output the failed packages.
     """
+    # Check if the requirements file exists
+    if not os.path.isfile(file_path):
+        print(f"❌ Error: Requirements file '{file_path}' not found.")
+        return
+    
     packages = []
     with open(file_path, 'r', encoding=encoding) as file:
         for line in file:
